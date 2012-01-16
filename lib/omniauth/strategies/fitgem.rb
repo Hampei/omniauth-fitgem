@@ -25,17 +25,7 @@ module OmniAuth
       uid { raw_info["id"] }
 
       info do
-        {
-          :nickname => raw_info['screen_name'],
-          :name => raw_info['name'],
-          :location => raw_info['location'],
-          :image => raw_info['profile_image_url'],
-          :description => raw_info['description'],
-          :urls => {
-            'Website' => raw_info['url'],
-            'Weibo' => 'http://weibo.com/' + raw_info['id'].to_s
-          }
-        }
+        @raw_info
       end
 
       extra do
