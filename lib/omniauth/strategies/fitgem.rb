@@ -4,17 +4,16 @@ require 'multi_json'
 module OmniAuth
   module Strategies
     class Fitgem < OmniAuth::Strategies::OAuth
-      option :name, 'weibo'
+      option :name, 'fitgem'
       option :sign_in, true
       def initialize(*args)
         super
-        # taken from https://github.com/intridea/omniauth/blob/0-3-stable/oa-oauth/lib/omniauth/strategies/oauth/tsina.rb#L15-21
         options.client_options = {
           :access_token_path => '/oauth/access_token',
           :authorize_path => '/oauth/authorize',
           :realm => 'OmniAuth',
           :request_token_path => '/oauth/request_token',
-          :site => 'http://api.t.sina.com.cn',
+          :site => 'http://api.fitbit.com',
         }
       end
 
@@ -41,24 +40,6 @@ module OmniAuth
 
       extra do
         { :raw_info => raw_info }
-      end
-
-      #taken from https://github.com/intridea/omniauth/blob/0-3-stable/oa-oauth/lib/omniauth/strategies/oauth/tsina.rb#L52-67
-      def request_phase
-        request_token = consumer.get_request_token(:oauth_callback => callback_url)
-        session['oauth'] ||= {}
-        session['oauth'][name.to_s] = {'callback_confirmed' => true, 'request_token' => request_token.token, 'request_secret' => request_token.secret}
-
-        if request_token.callback_confirmed?
-          redirect request_token.authorize_url(options[:authorize_params])
-        else
-          redirect request_token.authorize_url(options[:authorize_params].merge(:oauth_callback => callback_url))
-        end
-
-      rescue ::Timeout::Error => e
-        fail!(:timeout, e)
-      rescue ::Net::HTTPFatalError, ::OpenSSL::SSL::SSLError => e
-        fail!(:service_unavailable, e)
       end
 
       def raw_info
