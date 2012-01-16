@@ -4,7 +4,7 @@ require 'multi_json'
 module OmniAuth
   module Strategies
     class Fitgem < OmniAuth::Strategies::OAuth
-      option :name, 'fitgem'
+      option :name, 'fitbit'
       option :sign_in, true
       def initialize(*args)
         super
