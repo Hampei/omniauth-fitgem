@@ -1,5 +1,5 @@
-require "omniauth-foursquare/version"
-require "omniauth/strategies/foursquare"
+require "omniauth-fitgem/version"
+require "omniauth/strategies/fitgem"
 
 module Omniauth
   module Fitgem
