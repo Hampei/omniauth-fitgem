@@ -43,7 +43,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.decode(access_token.get('/account/verify_credentials.json').body)
+        @raw_info ||= MultiJson.decode(access_token.get('/1/user/-/profile.json').body)
         if @populated
           puts @raw_info.inspect
           puts
