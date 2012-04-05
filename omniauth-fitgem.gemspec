@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Scott Ballantyne"]
   s.email       = ["ussballantyne@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{OmniAuth strategy for Fitbit}
+  s.description = s.summary
 
   s.rubyforge_project = "omniauth-fitgem"
 
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.add_runtime_dependency 'omniauth-oauth', '~> 1.0'
+  s.add_runtime_dependency 'multi_json', '~> 1.2'
 end
